@@ -7,11 +7,10 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-public class Customer {
+public class Score {
 
     @Id
     private String document;
-    private String name;
-    private String lastName;
+    private int score;
 
 }
