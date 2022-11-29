@@ -9,6 +9,7 @@ import irvingmx.bank.exception.UnqualifiedScore;
 import irvingmx.bank.model.CreditCardRepository;
 import irvingmx.bank.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -25,6 +26,8 @@ public class CreditCardResource {
     private CreditCardRepository creditCardRepository;
     @Autowired
     private NotificationService notificationService;
+    @Value("${irvingmx.scoreChecker.uri}")
+    private String scoreCheckerUri;
 
     @GetMapping("credit-cards/{document}")
     public List<CreditCard> getAllCreditCardsOfCustomer(@PathVariable String document){
@@ -56,7 +59,7 @@ public class CreditCardResource {
     }
 
     public Score getCustomerScore(String document) {
-        String uri = "http://localhost:8080/scores/"+document;
+        String uri = scoreCheckerUri + document;
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(uri, Score.class);
     }
