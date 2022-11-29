@@ -39,7 +39,7 @@ public class AccountResource {
         return ResponseEntity.created(location).build();
     }
     @PutMapping("/accounts/{accountNumber}")
-    public ResponseEntity<Object> updateAccountBalance(@PathVariable Account account, @PathVariable String accountNumber) {
+    public ResponseEntity<Object> updateAccountBalance(@RequestBody Account account, @PathVariable String accountNumber) {
         Optional<Account> accountOptional = accountRepository.findById(accountNumber);
         if(!accountOptional.isPresent()){
             return ResponseEntity.notFound().build();
