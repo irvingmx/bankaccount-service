@@ -1,8 +1,10 @@
 package irvingmx.bank.resource;
 
 import irvingmx.bank.domain.Customer;
+import irvingmx.bank.enums.TransactionType;
 import irvingmx.bank.exception.CustomerRegisteredException;
 import irvingmx.bank.model.CustomerRepository;
+import irvingmx.bank.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,8 @@ public class CustomerResource {
 
     @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
+    private NotificationService notificationService;
 
     @GetMapping("/customers")
     public List<Customer> getAllCustomers() {
@@ -30,6 +34,7 @@ public class CustomerResource {
             throw new CustomerRegisteredException("There is already a customer registered with this document!!! " + customer.getDocument());
         }
         Customer savedCustomer = customerRepository.save(customer);
+        notificationService.sendNotification(TransactionType.SUCCESSFUL_CUSTOMER_REGISTRATION, customer.getDocument());
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{document}")
                 .buildAndExpand(savedCustomer.getDocument()).toUri();
         return ResponseEntity.created(location).build();

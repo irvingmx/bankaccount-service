@@ -3,9 +3,11 @@ package irvingmx.bank.resource;
 import irvingmx.bank.domain.CreditCard;
 import irvingmx.bank.domain.Customer;
 import irvingmx.bank.domain.Score;
+import irvingmx.bank.enums.TransactionType;
 import irvingmx.bank.exception.CreditCardRegisteredException;
 import irvingmx.bank.exception.UnqualifiedScore;
 import irvingmx.bank.model.CreditCardRepository;
+import irvingmx.bank.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,8 @@ public class CreditCardResource {
 
     @Autowired
     private CreditCardRepository creditCardRepository;
+    @Autowired
+    private NotificationService notificationService;
 
     @GetMapping("credit-cards/{document}")
     public List<CreditCard> getAllCreditCardsOfCustomer(@PathVariable String document){
@@ -44,6 +48,7 @@ public class CreditCardResource {
         customer.setDocument(document);
         creditCard.setCustomer(customer);
         CreditCard savedCreditCard = creditCardRepository.save(creditCard);
+        notificationService.sendNotification(TransactionType.SUCCESSFUL_APPLICATION_CREDIT_CARD, document);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{creditCardNumber}")
                 .buildAndExpand(savedCreditCard.getCreditCardNumber()).toUri();
         return ResponseEntity.created(location).build();

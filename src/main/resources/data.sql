@@ -1,7 +1,7 @@
 
-insert into Customer values ('03185538S', 'Ramírez García', 'Irving');
+insert into Customer (document, name, last_name, email) values ('03185538S', 'Irving','Ramírez García', 'iramirezg@gmail.com');
 
-insert into Customer values ('67855738R', 'Cano', 'Liza');
+insert into Customer (document, name, last_name, email) values ('67855738R', 'Liza', 'Lisaeva', 'lisa.isaeva@gmail.com');
 
 insert into Account values ('1234 5678 9101 1112', 25000, '03185538S');
 

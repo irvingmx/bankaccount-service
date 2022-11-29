@@ -1,8 +1,10 @@
 package irvingmx.bank.resource;
 
 import irvingmx.bank.domain.Account;
+import irvingmx.bank.enums.TransactionType;
 import irvingmx.bank.exception.AccountRegisteredException;
 import irvingmx.bank.model.AccountRepository;
+import irvingmx.bank.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +19,8 @@ public class AccountResource {
 
     @Autowired
     private AccountRepository accountRepository;
-
+    @Autowired
+    private NotificationService notificationService;
     @GetMapping("/accounts")
     public List<Account> getAllAccounts() {
         return accountRepository.findAll();
@@ -30,6 +33,7 @@ public class AccountResource {
             throw new AccountRegisteredException("There is already an account registered with this account number!!! " + account.getAccountNumber());
         }
         Account savedAccount = accountRepository.save(account);
+        notificationService.sendNotification(TransactionType.SAVING_ACCOUNT_CREATED, account.getCustomer().getDocument());
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{accountNumber}")
                 .buildAndExpand(savedAccount.getAccountNumber()).toUri();
         return ResponseEntity.created(location).build();
