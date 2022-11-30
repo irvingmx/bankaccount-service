@@ -27,6 +27,10 @@ https://irvingmx-bankaccount-service.herokuapp.com/swagger-ui.html
 * score-resource(get)
 * transaction-resource(get)
 
+## Customer EMAIL mandatory
+
+It's mandatory to fill email on Customer registration, the transaction notifications will be sent to this email address 
+
 # Testing 
 
 ## Postman Collection
