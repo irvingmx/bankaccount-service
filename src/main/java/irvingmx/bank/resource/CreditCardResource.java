@@ -28,6 +28,8 @@ public class CreditCardResource {
     private NotificationService notificationService;
     @Value("${irvingmx.scoreChecker.uri}")
     private String scoreCheckerUri;
+    @Value("${irvingmx.scoreChecker.limit}")
+    private int scoreCheckerLimit;
 
     @GetMapping("credit-cards/{document}")
     public List<CreditCard> getAllCreditCardsOfCustomer(@PathVariable String document){
@@ -44,7 +46,7 @@ public class CreditCardResource {
             throw new CreditCardRegisteredException("There is already a Credit Card registered with this card number -> " + creditCard.getCreditCardNumber());
         }
         Score score = getCustomerScore(document);
-        if(score.getScore() < 50) {
+        if(score.getScore() < scoreCheckerLimit) {
             throw new UnqualifiedScore("This customer has not qualified score for get a Credit Card " + document);
         }
         Customer customer = new Customer();

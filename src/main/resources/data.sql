@@ -17,9 +17,21 @@ insert into Score values ('03185538S', 85);
 
 insert into Score values ('67855738R', 78);
 
-insert into Score values ('12345678A', 45);
+insert into Score values ('12345678A', 85);
 
-insert into Score values ('12345678B', 35);
+insert into Score values ('12345678B', 62);
+
+insert into Score values ('12345678C', 45);
+
+insert into Score values ('12345678D', 35);
+
+insert into Score values ('12345678E', 58);
+
+insert into Score values ('12345678F', 35);
+
+insert into Score values ('12345678Y', 45);
+
+insert into Score values ('12345678Z', 92);
 
 
 
