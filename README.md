@@ -12,11 +12,28 @@ As convinience for testing and consuming the services they are deployed on Herok
 
 https://irvingmx-bankaccount-service.herokuapp.com/
 
+## JWT Authentication
+
+Services are configured to authenticate through Jwt, for testing purposes you can use next credentials
+
+* user : irvingmx
+* password : irvingmx
+* Bearer header : Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpcnZpbmdteCIsImV4cCI6MTY2OTkxMjQ2MywiaWF0IjoxNjY5ODk0NDYzfQ.PJryOu9vDGavvN0gNczrvUtX2qwsxhBF17r553Hl_ZHvUjKiR-3F6gdlJE-UkqpIiz28Te8IotoG2goa3cn2mg
+
 ## Swagger UI API Documentation
 
 This Api is documented vía Swagger you can find the API Description on the following url 
 
+#### NOTE as services are protected vía Jwt you have to authenticate with user password
+* user : irvingmx
+* password : irvingmx
+
 https://irvingmx-bankaccount-service.herokuapp.com/swagger-ui.html
+
+#### For execute services you have to Authorize using
+* user : irvingmx
+* Bearer header : Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpcnZpbmdteCIsImV4cCI6MTY2OTkxMjQ2MywiaWF0IjoxNjY5ODk0NDYzfQ.PJryOu9vDGavvN0gNczrvUtX2qwsxhBF17r553Hl_ZHvUjKiR-3F6gdlJE-UkqpIiz28Te8IotoG2goa3cn2mg
+
 
 ## Resources exposed
 
