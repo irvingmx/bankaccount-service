@@ -1,17 +1,16 @@
 package irvingmx.bank.resource;
 
+import irvingmx.bank.api.v1.BankApiNotificationService;
 import irvingmx.bank.domain.Transaction;
 import irvingmx.bank.service.EmailService;
 import irvingmx.bank.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class NotificationResource {
+@RequestMapping("/v1")
+public class NotificationResource implements BankApiNotificationService {
 
     @Autowired
     private EmailService emailService;

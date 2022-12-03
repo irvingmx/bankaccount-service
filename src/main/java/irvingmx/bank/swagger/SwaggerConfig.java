@@ -26,7 +26,7 @@ public class SwaggerConfig {
                 .securityContexts(Arrays.asList(securityContext()))
                 .securitySchemes(Arrays.asList(apiKey()))
             .select()
-            .apis(RequestHandlerSelectors.basePackage("irvingmx.bank.resource"))
+            .apis(RequestHandlerSelectors.basePackage("irvingmx.bank.api"))
             .paths(PathSelectors.any())
             .build();
     }
