@@ -222,6 +222,35 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "https://irvingmx-bankaccount-service.herokuapp.com/authenticate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"username\": \"irvingmx\",\n        \"password\": \"irvingmx\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://irvingmx-bankaccount-service.herokuapp.com/authenticate",
+					"protocol": "https",
+					"host": [
+						"irvingmx-bankaccount-service",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"authenticate"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
