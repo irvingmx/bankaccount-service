@@ -20,7 +20,6 @@ Services are configured to authenticate through Jwt, for testing purposes you ca
 * password : irvingmx
 * Bearer header : execute POST https://irvingmx-bankaccount-service.herokuapp.com/authenticate
 
-
 ## Swagger UI API Documentation
 
 This Api is documented vía Swagger you can find the API Description on the following url 
