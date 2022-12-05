@@ -15,17 +15,20 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class AccountResource {
+@RequestMapping("/v1")
+public class AccountResource implements irvingmx.bank.api.v1.BankApiAccountService {
 
     @Autowired
     private AccountRepository accountRepository;
     @Autowired
     private NotificationService notificationService;
+    @Override
     @GetMapping("/accounts")
     public List<Account> getAllAccounts() {
         return accountRepository.findAll();
     }
 
+    @Override
     @PostMapping("/accounts")
     public ResponseEntity<Object> createAccount(@RequestBody Account account) {
         Optional<Account> optionalAccount = accountRepository.findById(account.getAccountNumber());
@@ -38,6 +41,7 @@ public class AccountResource {
                 .buildAndExpand(savedAccount.getAccountNumber()).toUri();
         return ResponseEntity.created(location).build();
     }
+    @Override
     @PutMapping("/accounts/{accountNumber}")
     public ResponseEntity<Object> updateAccountBalance(@RequestBody Account account, @PathVariable String accountNumber) {
         Optional<Account> accountOptional = accountRepository.findById(accountNumber);

@@ -1,5 +1,6 @@
 package irvingmx.bank.resource;
 
+import irvingmx.bank.api.v1.BankApiCreditCardService;
 import irvingmx.bank.domain.CreditCard;
 import irvingmx.bank.domain.Customer;
 import irvingmx.bank.domain.Score;
@@ -20,7 +21,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class CreditCardResource {
+@RequestMapping("/v1")
+public class CreditCardResource implements BankApiCreditCardService {
 
     @Autowired
     private CreditCardRepository creditCardRepository;
@@ -31,6 +33,7 @@ public class CreditCardResource {
     @Value("${irvingmx.scoreChecker.limit}")
     private int scoreCheckerLimit;
 
+    @Override
     @GetMapping("credit-cards/{document}")
     public List<CreditCard> getAllCreditCardsOfCustomer(@PathVariable String document){
         Customer customer = new Customer();
@@ -39,6 +42,7 @@ public class CreditCardResource {
 
     }
 
+    @Override
     @PostMapping("/credit-cards/{document}")
     public ResponseEntity<Object> createCreditCard(@RequestBody CreditCard creditCard, @PathVariable String document) {
         Optional<CreditCard> optionalCreditCard = creditCardRepository.findById(creditCard.getCreditCardNumber());
@@ -60,6 +64,7 @@ public class CreditCardResource {
 
     }
 
+    @Override
     public Score getCustomerScore(String document) {
         String uri = scoreCheckerUri + document;
         RestTemplate restTemplate = new RestTemplate();

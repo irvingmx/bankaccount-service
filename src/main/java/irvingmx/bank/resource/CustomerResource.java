@@ -15,18 +15,21 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class CustomerResource {
+@RequestMapping("/v1")
+public class CustomerResource implements irvingmx.bank.api.v1.BankApiCustomerService {
 
     @Autowired
     private CustomerRepository customerRepository;
     @Autowired
     private NotificationService notificationService;
 
+    @Override
     @GetMapping("/customers")
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }
 
+    @Override
     @PostMapping("/customers")
     public ResponseEntity<Object> createCustomer(@RequestBody Customer customer) {
         Optional<Customer> optionalCustomer = customerRepository.findById(customer.getDocument());
@@ -40,6 +43,7 @@ public class CustomerResource {
         return ResponseEntity.created(location).build();
     }
 
+    @Override
     @PutMapping("/customers/{document}")
     public ResponseEntity<Object> updateCustomer(@RequestBody Customer customer, @PathVariable String document) {
         Optional<Customer> optionalCustomer = customerRepository.findById(document);

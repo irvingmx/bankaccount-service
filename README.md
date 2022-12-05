@@ -18,7 +18,7 @@ Services are configured to authenticate through Jwt, for testing purposes you ca
 
 * user : irvingmx
 * password : irvingmx
-* Bearer header : Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpcnZpbmdteCIsImV4cCI6MTY2OTkxMjQ2MywiaWF0IjoxNjY5ODk0NDYzfQ.PJryOu9vDGavvN0gNczrvUtX2qwsxhBF17r553Hl_ZHvUjKiR-3F6gdlJE-UkqpIiz28Te8IotoG2goa3cn2mg
+* Bearer header : execute POST https://irvingmx-bankaccount-service.herokuapp.com/authenticate
 
 ## Swagger UI API Documentation
 
@@ -32,8 +32,7 @@ https://irvingmx-bankaccount-service.herokuapp.com/swagger-ui.html
 
 #### For execute services you have to Authorize using
 * user : irvingmx
-* Bearer header : Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpcnZpbmdteCIsImV4cCI6MTY2OTkxMjQ2MywiaWF0IjoxNjY5ODk0NDYzfQ.PJryOu9vDGavvN0gNczrvUtX2qwsxhBF17r553Hl_ZHvUjKiR-3F6gdlJE-UkqpIiz28Te8IotoG2goa3cn2mg
-
+* Bearer header : execute POST https://irvingmx-bankaccount-service.herokuapp.com/authenticate
 
 ## Resources exposed
 
